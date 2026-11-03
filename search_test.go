@@ -1097,6 +1097,7 @@ var _ = Describe("RediSearch commands Resp 2", Label("search"), func() {
 		val, err = client.FTCreate(ctx, "idx_hash", ftCreateOptions, schema...).Result()
 		Expect(err).NotTo(HaveOccurred())
 		Expect(val).To(Equal("OK"))
+		WaitForIndexing(client, "idx_hash")
 
 		ftSearchOptions := &redis.FTSearchOptions{
 			DialectVersion: 4,

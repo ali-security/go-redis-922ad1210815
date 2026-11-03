@@ -1,10 +1,7 @@
 name: Release Drafter
 
 on:
-  push:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - master
+  workflow_dispatch:
 
 permissions: {}
 jobs:
@@ -14,6 +11,7 @@ jobs:
       contents: write  #  to create a github release (release-drafter/release-drafter)
 
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v6

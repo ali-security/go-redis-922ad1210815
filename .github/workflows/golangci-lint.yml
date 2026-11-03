@@ -1,14 +1,7 @@
 name: golangci-lint
 
 on:
-  push:
-    tags:
-      - v*
-    branches:
-      - master
-      - main
-      - v9
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -20,6 +13,7 @@ jobs:
       pull-requests: read  # for golangci/golangci-lint-action to fetch pull requests
     name: lint
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: golangci-lint

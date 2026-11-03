@@ -1,7 +1,6 @@
 name: "Close stale issues"
 on:
-  schedule:
-  - cron: "0 0 * * *"
+  workflow_dispatch:
 
 permissions: {}
 jobs:
@@ -11,6 +10,7 @@ jobs:
       pull-requests: write  #  to close stale PRs (actions/stale)
 
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
     - uses: actions/stale@v9
       with:
