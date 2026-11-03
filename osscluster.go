@@ -86,8 +86,19 @@ type ClusterOptions struct {
 	ConnMaxIdleTime time.Duration
 	ConnMaxLifetime time.Duration
 
-	TLSConfig        *tls.Config
-	DisableIndentity bool // Disable set-lib on connect. Default is false.
+	TLSConfig *tls.Config
+
+	// DisableIndentity - Disable set-lib on connect.
+	//
+	// default: false
+	//
+	// Deprecated: Use DisableIdentity instead.
+	DisableIndentity bool
+
+	// DisableIdentity is used to disable CLIENT SETINFO command on connect.
+	//
+	// default: false
+	DisableIdentity bool
 
 	IdentitySuffix string // Add suffix to client name. Default is empty.
 }
@@ -296,6 +307,7 @@ func (opt *ClusterOptions) clientOptions() *Options {
 		MaxActiveConns:   opt.MaxActiveConns,
 		ConnMaxIdleTime:  opt.ConnMaxIdleTime,
 		ConnMaxLifetime:  opt.ConnMaxLifetime,
+		DisableIdentity:  opt.DisableIdentity,
 		DisableIndentity: opt.DisableIndentity,
 		IdentitySuffix:   opt.IdentitySuffix,
 		TLSConfig:        opt.TLSConfig,
